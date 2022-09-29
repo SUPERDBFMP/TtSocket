@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+//编译后会生成多个Message类，并没有被包含在.java文件中,反之,生成单一.java文件
+option java_multiple_files = false;
+option java_package = "indi.dbfmp.ttsocket.protocol";
+option java_outer_classname = "HelloWorld";
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
