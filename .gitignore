@@ -1,0 +1,14 @@
+# Eclipse project files
+.project
+.classpath
+.settings
+
+# IntelliJ IDEA project files and directories
+*.iml
+.idea/*
+
+/target
+*/target
+
+log/
+venv/
