@@ -23,9 +23,9 @@ public final class ClientConnect {
      *协议版本号
      * </pre>
      *
-     * <code>bytes version = 1;</code>
+     * <code>int32 version = 1;</code>
      */
-    com.google.protobuf.ByteString getVersion();
+    int getVersion();
 
     /**
      * <pre>
@@ -76,7 +76,7 @@ public final class ClientConnect {
       super(builder);
     }
     private ConnectAuthReq() {
-      version_ = com.google.protobuf.ByteString.EMPTY;
+      version_ = 0;
       userName_ = "";
       pwd_ = "";
     }
@@ -105,9 +105,9 @@ public final class ClientConnect {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
 
-              version_ = input.readBytes();
+              version_ = input.readInt32();
               break;
             }
             case 18: {
@@ -155,15 +155,15 @@ public final class ClientConnect {
     }
 
     public static final int VERSION_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString version_;
+    private int version_;
     /**
      * <pre>
      *协议版本号
      * </pre>
      *
-     * <code>bytes version = 1;</code>
+     * <code>int32 version = 1;</code>
      */
-    public com.google.protobuf.ByteString getVersion() {
+    public int getVersion() {
       return version_;
     }
 
@@ -265,8 +265,8 @@ public final class ClientConnect {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!version_.isEmpty()) {
-        output.writeBytes(1, version_);
+      if (version_ != 0) {
+        output.writeInt32(1, version_);
       }
       if (!getUserNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, userName_);
@@ -283,9 +283,9 @@ public final class ClientConnect {
       if (size != -1) return size;
 
       size = 0;
-      if (!version_.isEmpty()) {
+      if (version_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, version_);
+          .computeInt32Size(1, version_);
       }
       if (!getUserNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, userName_);
@@ -309,8 +309,8 @@ public final class ClientConnect {
       indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq other = (indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq) obj;
 
       boolean result = true;
-      result = result && getVersion()
-          .equals(other.getVersion());
+      result = result && (getVersion()
+          == other.getVersion());
       result = result && getUserName()
           .equals(other.getUserName());
       result = result && getPwd()
@@ -327,7 +327,7 @@ public final class ClientConnect {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + getVersion().hashCode();
+      hash = (53 * hash) + getVersion();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUserName().hashCode();
       hash = (37 * hash) + PWD_FIELD_NUMBER;
@@ -465,7 +465,7 @@ public final class ClientConnect {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        version_ = com.google.protobuf.ByteString.EMPTY;
+        version_ = 0;
 
         userName_ = "";
 
@@ -548,7 +548,7 @@ public final class ClientConnect {
 
       public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq other) {
         if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq.getDefaultInstance()) return this;
-        if (other.getVersion() != com.google.protobuf.ByteString.EMPTY) {
+        if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
         if (!other.getUserName().isEmpty()) {
@@ -588,15 +588,15 @@ public final class ClientConnect {
         return this;
       }
 
-      private com.google.protobuf.ByteString version_ = com.google.protobuf.ByteString.EMPTY;
+      private int version_ ;
       /**
        * <pre>
        *协议版本号
        * </pre>
        *
-       * <code>bytes version = 1;</code>
+       * <code>int32 version = 1;</code>
        */
-      public com.google.protobuf.ByteString getVersion() {
+      public int getVersion() {
         return version_;
       }
       /**
@@ -604,13 +604,10 @@ public final class ClientConnect {
        *协议版本号
        * </pre>
        *
-       * <code>bytes version = 1;</code>
+       * <code>int32 version = 1;</code>
        */
-      public Builder setVersion(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setVersion(int value) {
+        
         version_ = value;
         onChanged();
         return this;
@@ -620,11 +617,11 @@ public final class ClientConnect {
        *协议版本号
        * </pre>
        *
-       * <code>bytes version = 1;</code>
+       * <code>int32 version = 1;</code>
        */
       public Builder clearVersion() {
         
-        version_ = getDefaultInstance().getVersion();
+        version_ = 0;
         onChanged();
         return this;
       }
@@ -868,9 +865,9 @@ public final class ClientConnect {
      *结果
      * </pre>
      *
-     * <code>bytes code = 1;</code>
+     * <code>int32 code = 1;</code>
      */
-    com.google.protobuf.ByteString getCode();
+    int getCode();
 
     /**
      * <pre>
@@ -903,7 +900,7 @@ public final class ClientConnect {
       super(builder);
     }
     private ConnectResp() {
-      code_ = com.google.protobuf.ByteString.EMPTY;
+      code_ = 0;
       message_ = "";
     }
 
@@ -931,9 +928,9 @@ public final class ClientConnect {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
 
-              code_ = input.readBytes();
+              code_ = input.readInt32();
               break;
             }
             case 18: {
@@ -975,15 +972,15 @@ public final class ClientConnect {
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString code_;
+    private int code_;
     /**
      * <pre>
      *结果
      * </pre>
      *
-     * <code>bytes code = 1;</code>
+     * <code>int32 code = 1;</code>
      */
-    public com.google.protobuf.ByteString getCode() {
+    public int getCode() {
       return code_;
     }
 
@@ -1043,8 +1040,8 @@ public final class ClientConnect {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!code_.isEmpty()) {
-        output.writeBytes(1, code_);
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
       }
       if (!getMessageBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
@@ -1058,9 +1055,9 @@ public final class ClientConnect {
       if (size != -1) return size;
 
       size = 0;
-      if (!code_.isEmpty()) {
+      if (code_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, code_);
+          .computeInt32Size(1, code_);
       }
       if (!getMessageBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
@@ -1081,8 +1078,8 @@ public final class ClientConnect {
       indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp other = (indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp) obj;
 
       boolean result = true;
-      result = result && getCode()
-          .equals(other.getCode());
+      result = result && (getCode()
+          == other.getCode());
       result = result && getMessage()
           .equals(other.getMessage());
       result = result && unknownFields.equals(other.unknownFields);
@@ -1097,7 +1094,7 @@ public final class ClientConnect {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode().hashCode();
+      hash = (53 * hash) + getCode();
       hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
       hash = (53 * hash) + getMessage().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -1233,7 +1230,7 @@ public final class ClientConnect {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        code_ = com.google.protobuf.ByteString.EMPTY;
+        code_ = 0;
 
         message_ = "";
 
@@ -1313,7 +1310,7 @@ public final class ClientConnect {
 
       public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp other) {
         if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp.getDefaultInstance()) return this;
-        if (other.getCode() != com.google.protobuf.ByteString.EMPTY) {
+        if (other.getCode() != 0) {
           setCode(other.getCode());
         }
         if (!other.getMessage().isEmpty()) {
@@ -1349,15 +1346,15 @@ public final class ClientConnect {
         return this;
       }
 
-      private com.google.protobuf.ByteString code_ = com.google.protobuf.ByteString.EMPTY;
+      private int code_ ;
       /**
        * <pre>
        *结果
        * </pre>
        *
-       * <code>bytes code = 1;</code>
+       * <code>int32 code = 1;</code>
        */
-      public com.google.protobuf.ByteString getCode() {
+      public int getCode() {
         return code_;
       }
       /**
@@ -1365,13 +1362,10 @@ public final class ClientConnect {
        *结果
        * </pre>
        *
-       * <code>bytes code = 1;</code>
+       * <code>int32 code = 1;</code>
        */
-      public Builder setCode(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setCode(int value) {
+        
         code_ = value;
         onChanged();
         return this;
@@ -1381,11 +1375,11 @@ public final class ClientConnect {
        *结果
        * </pre>
        *
-       * <code>bytes code = 1;</code>
+       * <code>int32 code = 1;</code>
        */
       public Builder clearCode() {
         
-        code_ = getDefaultInstance().getCode();
+        code_ = 0;
         onChanged();
         return this;
       }
@@ -1551,8 +1545,8 @@ public final class ClientConnect {
   static {
     java.lang.String[] descriptorData = {
       "\n\023ClientConnect.proto\"@\n\016ConnectAuthReq\022" +
-      "\017\n\007version\030\001 \001(\014\022\020\n\010userName\030\002 \001(\t\022\013\n\003pw" +
-      "d\030\003 \001(\t\",\n\013ConnectResp\022\014\n\004code\030\001 \001(\014\022\017\n\007" +
+      "\017\n\007version\030\001 \001(\005\022\020\n\010userName\030\002 \001(\t\022\013\n\003pw" +
+      "d\030\003 \001(\t\",\n\013ConnectResp\022\014\n\004code\030\001 \001(\005\022\017\n\007" +
       "message\030\002 \001(\tB/\n\034indi.dbfmp.ttsocket.pro" +
       "tocolB\rClientConnectP\000b\006proto3"
     };

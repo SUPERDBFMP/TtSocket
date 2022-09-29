@@ -7,7 +7,7 @@ option java_outer_classname = "ClientConnect";
 
 message ConnectAuthReq {
   //协议版本号
-  bytes version = 1;
+  int32 version = 1;
   //用户名
   string userName = 2;
   //密码
@@ -16,7 +16,7 @@ message ConnectAuthReq {
 
 message ConnectResp {
   //结果
-  bytes code = 1;
+  int32 code = 1;
   //信息
   string message = 2;
 }

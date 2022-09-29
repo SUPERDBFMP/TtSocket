@@ -12,7 +12,7 @@ public class UtilTest {
     public void deserializeReqTest() throws SerializationException {
         ClientConnect.ConnectAuthReq req = ClientConnect.ConnectAuthReq
                 .newBuilder()
-                .setVersion(ByteString.copyFrom(new byte[1]))
+                .setVersion(1)
                 .setUserName("ht")
                 .setPwd("123")
                 .build();
@@ -25,8 +25,35 @@ public class UtilTest {
     }
 
     @Test
-    public void methodName() {
+    public void serializeDeserializeReqTest() throws SerializationException {
+        ClientConnect.ConnectAuthReq req = ClientConnect.ConnectAuthReq
+                .newBuilder()
+                .setVersion(1)
+                .setUserName("ht")
+                .setPwd("123")
+                .build();
+        ByteBuf byteBuf = ScMessageCodec.serializeReq(PooledByteBufAllocator.DEFAULT, req);
+        int length = byteBuf.readInt();
+        System.out.println("数据长度"+length);
+        ScMessage scMessage = ScMessageCodec.deserializeToScMessage(byteBuf, Byte.parseByte("1"));
+        ClientConnect.ConnectAuthReq o = ScMessageCodec.deserializeReq(scMessage);
+        System.out.println(o);
 
+    }
+
+    @Test
+    public void serializeDeserializeRespTest() throws SerializationException {
+        ClientConnect.ConnectResp connectResp = ClientConnect.ConnectResp
+                .newBuilder()
+                .setCode(200)
+                .setMessage("操作成功")
+                .build();
+        ByteBuf byteBuf = ScMessageCodec.serializeResp(PooledByteBufAllocator.DEFAULT, connectResp);
+        int length = byteBuf.readInt();
+        System.out.println("数据长度"+length);
+        ScMessage scMessage = ScMessageCodec.deserializeToScMessage(byteBuf, Byte.parseByte("1"));
+        ClientConnect.ConnectResp o = ScMessageCodec.deserializeResp(scMessage);
+        System.out.println(o);
 
     }
 

@@ -53,12 +53,50 @@ public class ScMessageCodec {
             throw new SerializationException("无法获取command消息类型,className:" + msg.getClass().getSimpleName());
         }
         byte[] dataBytes = msg.toByteArray();
-        ByteBuf byteBuf = allocator.directBuffer(1 + dataBytes.length);
+        //todo 加密数据
+        ByteBuf byteBuf = allocator.directBuffer(4 + 1+ dataBytes.length);
+        //消息长度
+        byteBuf.writeInt(dataBytes.length);
+        //消息类型
         byteBuf.writeByte(mapping.getCommand());
+        //消息
         byteBuf.writeBytes(dataBytes);
         return byteBuf;
     }
 
+    /**
+     * 序列化请求消息
+     * @param allocator byte池
+     * @param msg 消息
+     * @return byte数据
+     * @throws SerializationException 序列化异常
+     */
+    public static ByteBuf serializeReq(ByteBufAllocator allocator, Message msg) throws SerializationException{
+        ScMsgMapping mapping = scMsgMappingReqMap.get(msg.getClass().getSimpleName());
+        if (null == mapping) {
+            throw new SerializationException("无法获取command消息类型,className:" + msg.getClass().getSimpleName());
+        }
+        byte[] dataBytes = msg.toByteArray();
+        //todo 加密数据
+        ByteBuf byteBuf = allocator.directBuffer(4 + 1 + dataBytes.length);
+        //消息长度
+        byteBuf.writeInt(dataBytes.length);
+        //消息类型
+        byteBuf.writeByte(mapping.getCommand());
+        //消息
+        byteBuf.writeBytes(dataBytes);
+        return byteBuf;
+    }
+
+
+
+    /**
+     * 反序列化请求消息
+     * @param msg
+     * @param <T>
+     * @return
+     * @throws SerializationException
+     */
     @SuppressWarnings("all")
     public static <T> T deserializeReq(ScMessage msg) throws SerializationException{
         ScMsgMapping mapping = scMsgMappingMap.get(msg.getCommand());
@@ -73,6 +111,43 @@ public class ScMessageCodec {
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new SerializationException("反射消息对象失败",e);
         }
+    }
+
+    /**
+     * 反序列化响应消息
+     * @param msg
+     * @param <T>
+     * @return
+     * @throws SerializationException
+     */
+    @SuppressWarnings("all")
+    public static <T> T deserializeResp(ScMessage msg) throws SerializationException{
+        ScMsgMapping mapping = scMsgMappingMap.get(msg.getCommand());
+        if (null == mapping) {
+            throw new SerializationException("无法获取command消息类型,command:" + msg.getCommand());
+        }
+        Class<? extends Message> reqMsgClass = mapping.getRespMsgClass();
+        byte[] data = new byte[msg.getData().readableBytes()];
+        msg.getData().readBytes(data);
+        try {
+            return (T)MethodUtils.invokeStaticMethod(reqMsgClass, "parseFrom", data);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            throw new SerializationException("反射消息对象失败",e);
+        }
+    }
+
+    /**
+     * 反序列化为ScMessage
+     * @param buf
+     * @param version
+     * @return
+     */
+    public static ScMessage deserializeToScMessage(ByteBuf buf,Byte version) {
+        return ScMessage.builder()
+                .version(version)
+                .command(buf.readByte())
+                .data(buf.readBytes(buf.readableBytes()))
+                .build();
     }
 
     @Getter
