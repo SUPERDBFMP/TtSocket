@@ -1,7 +1,9 @@
-package indi.dbfmp.ttsocket.protocol;
+package indi.dbfmp.ttsocket.common;
 
-import com.google.protobuf.ByteString;
-import indi.dbfmp.ttsocket.protocol.util.ScMessageCodec;
+import indi.dbfmp.ttsocket.common.util.ScMessageCodec;
+import indi.dbfmp.ttsocket.protocol.ClientConnect;
+import indi.dbfmp.ttsocket.protocol.ScMessage;
+import indi.dbfmp.ttsocket.protocol.SerializationException;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
 import org.junit.Test;
@@ -12,7 +14,6 @@ public class UtilTest {
     public void deserializeReqTest() throws SerializationException {
         ClientConnect.ConnectAuthReq req = ClientConnect.ConnectAuthReq
                 .newBuilder()
-                .setVersion(1)
                 .setUserName("ht")
                 .setPwd("123")
                 .build();
@@ -28,7 +29,6 @@ public class UtilTest {
     public void serializeDeserializeReqTest() throws SerializationException {
         ClientConnect.ConnectAuthReq req = ClientConnect.ConnectAuthReq
                 .newBuilder()
-                .setVersion(1)
                 .setUserName("ht")
                 .setPwd("123")
                 .build();
@@ -43,7 +43,7 @@ public class UtilTest {
 
     @Test
     public void serializeDeserializeRespTest() throws SerializationException {
-        ClientConnect.ConnectResp connectResp = ClientConnect.ConnectResp
+        ClientConnect.ConnectAuthResp connectResp = ClientConnect.ConnectAuthResp
                 .newBuilder()
                 .setCode(200)
                 .setMessage("操作成功")
@@ -52,7 +52,7 @@ public class UtilTest {
         int length = byteBuf.readInt();
         System.out.println("数据长度"+length);
         ScMessage scMessage = ScMessageCodec.deserializeToScMessage(byteBuf, Byte.parseByte("1"));
-        ClientConnect.ConnectResp o = ScMessageCodec.deserializeResp(scMessage);
+        ClientConnect.ConnectAuthResp o = ScMessageCodec.deserializeResp(scMessage);
         System.out.println(o);
 
     }

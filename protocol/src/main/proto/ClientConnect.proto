@@ -6,15 +6,41 @@ option java_package = "indi.dbfmp.ttsocket.protocol";
 option java_outer_classname = "ClientConnect";
 
 message ConnectAuthReq {
-  //协议版本号
-  int32 version = 1;
   //用户名
-  string userName = 2;
+  string userName = 1;
   //密码
-  string pwd = 3;
+  string pwd = 2;
 }
 
-message ConnectResp {
+message ConnectAuthResp {
+  //结果
+  int32 code = 1;
+  //信息
+  string message = 2;
+}
+
+//获取服务器rsa公钥
+message GetRsaPublicKeyReq{
+  //协议版本号
+  int32 version = 1;
+}
+
+message GetRsaPublicKeyResp {
+  //结果
+  int32 code = 1;
+  //信息
+  string message = 2;
+  //publicKey
+  string publicKey = 3;
+}
+
+//交换aes密钥
+message ChangeAesKeyReq{
+  //aesKey
+  int32 aesKey = 1;
+}
+
+message ChangeAesKeyResp {
   //结果
   int32 code = 1;
   //信息

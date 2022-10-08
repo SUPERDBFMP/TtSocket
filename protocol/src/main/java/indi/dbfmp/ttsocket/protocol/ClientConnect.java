@@ -20,19 +20,10 @@ public final class ClientConnect {
 
     /**
      * <pre>
-     *协议版本号
-     * </pre>
-     *
-     * <code>int32 version = 1;</code>
-     */
-    int getVersion();
-
-    /**
-     * <pre>
      *用户名
      * </pre>
      *
-     * <code>string userName = 2;</code>
+     * <code>string userName = 1;</code>
      */
     java.lang.String getUserName();
     /**
@@ -40,7 +31,7 @@ public final class ClientConnect {
      *用户名
      * </pre>
      *
-     * <code>string userName = 2;</code>
+     * <code>string userName = 1;</code>
      */
     com.google.protobuf.ByteString
         getUserNameBytes();
@@ -50,7 +41,7 @@ public final class ClientConnect {
      *密码
      * </pre>
      *
-     * <code>string pwd = 3;</code>
+     * <code>string pwd = 2;</code>
      */
     java.lang.String getPwd();
     /**
@@ -58,7 +49,7 @@ public final class ClientConnect {
      *密码
      * </pre>
      *
-     * <code>string pwd = 3;</code>
+     * <code>string pwd = 2;</code>
      */
     com.google.protobuf.ByteString
         getPwdBytes();
@@ -76,7 +67,6 @@ public final class ClientConnect {
       super(builder);
     }
     private ConnectAuthReq() {
-      version_ = 0;
       userName_ = "";
       pwd_ = "";
     }
@@ -105,18 +95,13 @@ public final class ClientConnect {
             case 0:
               done = true;
               break;
-            case 8: {
-
-              version_ = input.readInt32();
-              break;
-            }
-            case 18: {
+            case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
               userName_ = s;
               break;
             }
-            case 26: {
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               pwd_ = s;
@@ -154,27 +139,14 @@ public final class ClientConnect {
               indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq.Builder.class);
     }
 
-    public static final int VERSION_FIELD_NUMBER = 1;
-    private int version_;
-    /**
-     * <pre>
-     *协议版本号
-     * </pre>
-     *
-     * <code>int32 version = 1;</code>
-     */
-    public int getVersion() {
-      return version_;
-    }
-
-    public static final int USERNAME_FIELD_NUMBER = 2;
+    public static final int USERNAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object userName_;
     /**
      * <pre>
      *用户名
      * </pre>
      *
-     * <code>string userName = 2;</code>
+     * <code>string userName = 1;</code>
      */
     public java.lang.String getUserName() {
       java.lang.Object ref = userName_;
@@ -193,7 +165,7 @@ public final class ClientConnect {
      *用户名
      * </pre>
      *
-     * <code>string userName = 2;</code>
+     * <code>string userName = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUserNameBytes() {
@@ -209,14 +181,14 @@ public final class ClientConnect {
       }
     }
 
-    public static final int PWD_FIELD_NUMBER = 3;
+    public static final int PWD_FIELD_NUMBER = 2;
     private volatile java.lang.Object pwd_;
     /**
      * <pre>
      *密码
      * </pre>
      *
-     * <code>string pwd = 3;</code>
+     * <code>string pwd = 2;</code>
      */
     public java.lang.String getPwd() {
       java.lang.Object ref = pwd_;
@@ -235,7 +207,7 @@ public final class ClientConnect {
      *密码
      * </pre>
      *
-     * <code>string pwd = 3;</code>
+     * <code>string pwd = 2;</code>
      */
     public com.google.protobuf.ByteString
         getPwdBytes() {
@@ -265,14 +237,11 @@ public final class ClientConnect {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (version_ != 0) {
-        output.writeInt32(1, version_);
-      }
       if (!getUserNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, userName_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, userName_);
       }
       if (!getPwdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, pwd_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, pwd_);
       }
       unknownFields.writeTo(output);
     }
@@ -283,15 +252,11 @@ public final class ClientConnect {
       if (size != -1) return size;
 
       size = 0;
-      if (version_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, version_);
-      }
       if (!getUserNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, userName_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, userName_);
       }
       if (!getPwdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, pwd_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, pwd_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -309,8 +274,6 @@ public final class ClientConnect {
       indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq other = (indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq) obj;
 
       boolean result = true;
-      result = result && (getVersion()
-          == other.getVersion());
       result = result && getUserName()
           .equals(other.getUserName());
       result = result && getPwd()
@@ -326,8 +289,6 @@ public final class ClientConnect {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + getVersion();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUserName().hashCode();
       hash = (37 * hash) + PWD_FIELD_NUMBER;
@@ -465,8 +426,6 @@ public final class ClientConnect {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        version_ = 0;
-
         userName_ = "";
 
         pwd_ = "";
@@ -497,7 +456,6 @@ public final class ClientConnect {
       @java.lang.Override
       public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq buildPartial() {
         indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq result = new indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq(this);
-        result.version_ = version_;
         result.userName_ = userName_;
         result.pwd_ = pwd_;
         onBuilt();
@@ -548,9 +506,6 @@ public final class ClientConnect {
 
       public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq other) {
         if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthReq.getDefaultInstance()) return this;
-        if (other.getVersion() != 0) {
-          setVersion(other.getVersion());
-        }
         if (!other.getUserName().isEmpty()) {
           userName_ = other.userName_;
           onChanged();
@@ -588,51 +543,13 @@ public final class ClientConnect {
         return this;
       }
 
-      private int version_ ;
-      /**
-       * <pre>
-       *协议版本号
-       * </pre>
-       *
-       * <code>int32 version = 1;</code>
-       */
-      public int getVersion() {
-        return version_;
-      }
-      /**
-       * <pre>
-       *协议版本号
-       * </pre>
-       *
-       * <code>int32 version = 1;</code>
-       */
-      public Builder setVersion(int value) {
-        
-        version_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *协议版本号
-       * </pre>
-       *
-       * <code>int32 version = 1;</code>
-       */
-      public Builder clearVersion() {
-        
-        version_ = 0;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object userName_ = "";
       /**
        * <pre>
        *用户名
        * </pre>
        *
-       * <code>string userName = 2;</code>
+       * <code>string userName = 1;</code>
        */
       public java.lang.String getUserName() {
         java.lang.Object ref = userName_;
@@ -651,7 +568,7 @@ public final class ClientConnect {
        *用户名
        * </pre>
        *
-       * <code>string userName = 2;</code>
+       * <code>string userName = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUserNameBytes() {
@@ -671,7 +588,7 @@ public final class ClientConnect {
        *用户名
        * </pre>
        *
-       * <code>string userName = 2;</code>
+       * <code>string userName = 1;</code>
        */
       public Builder setUserName(
           java.lang.String value) {
@@ -688,7 +605,7 @@ public final class ClientConnect {
        *用户名
        * </pre>
        *
-       * <code>string userName = 2;</code>
+       * <code>string userName = 1;</code>
        */
       public Builder clearUserName() {
         
@@ -701,7 +618,7 @@ public final class ClientConnect {
        *用户名
        * </pre>
        *
-       * <code>string userName = 2;</code>
+       * <code>string userName = 1;</code>
        */
       public Builder setUserNameBytes(
           com.google.protobuf.ByteString value) {
@@ -721,7 +638,7 @@ public final class ClientConnect {
        *密码
        * </pre>
        *
-       * <code>string pwd = 3;</code>
+       * <code>string pwd = 2;</code>
        */
       public java.lang.String getPwd() {
         java.lang.Object ref = pwd_;
@@ -740,7 +657,7 @@ public final class ClientConnect {
        *密码
        * </pre>
        *
-       * <code>string pwd = 3;</code>
+       * <code>string pwd = 2;</code>
        */
       public com.google.protobuf.ByteString
           getPwdBytes() {
@@ -760,7 +677,7 @@ public final class ClientConnect {
        *密码
        * </pre>
        *
-       * <code>string pwd = 3;</code>
+       * <code>string pwd = 2;</code>
        */
       public Builder setPwd(
           java.lang.String value) {
@@ -777,7 +694,7 @@ public final class ClientConnect {
        *密码
        * </pre>
        *
-       * <code>string pwd = 3;</code>
+       * <code>string pwd = 2;</code>
        */
       public Builder clearPwd() {
         
@@ -790,7 +707,7 @@ public final class ClientConnect {
        *密码
        * </pre>
        *
-       * <code>string pwd = 3;</code>
+       * <code>string pwd = 2;</code>
        */
       public Builder setPwdBytes(
           com.google.protobuf.ByteString value) {
@@ -856,8 +773,8 @@ public final class ClientConnect {
 
   }
 
-  public interface ConnectRespOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:ConnectResp)
+  public interface ConnectAuthRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ConnectAuthResp)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -888,18 +805,18 @@ public final class ClientConnect {
         getMessageBytes();
   }
   /**
-   * Protobuf type {@code ConnectResp}
+   * Protobuf type {@code ConnectAuthResp}
    */
-  public  static final class ConnectResp extends
+  public  static final class ConnectAuthResp extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:ConnectResp)
-      ConnectRespOrBuilder {
+      // @@protoc_insertion_point(message_implements:ConnectAuthResp)
+      ConnectAuthRespOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ConnectResp.newBuilder() to construct.
-    private ConnectResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ConnectAuthResp.newBuilder() to construct.
+    private ConnectAuthResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ConnectResp() {
+    private ConnectAuthResp() {
       code_ = 0;
       message_ = "";
     }
@@ -909,7 +826,7 @@ public final class ClientConnect {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ConnectResp(
+    private ConnectAuthResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -960,15 +877,15 @@ public final class ClientConnect {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectResp_descriptor;
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectAuthResp_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectResp_fieldAccessorTable
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectAuthResp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp.Builder.class);
+              indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp.Builder.class);
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
@@ -1072,10 +989,10 @@ public final class ClientConnect {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp)) {
+      if (!(obj instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp)) {
         return super.equals(obj);
       }
-      indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp other = (indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp) obj;
+      indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp other = (indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp) obj;
 
       boolean result = true;
       result = result && (getCode()
@@ -1102,69 +1019,69 @@ public final class ClientConnect {
       return hash;
     }
 
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(byte[] data)
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(java.io.InputStream input)
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseDelimitedFrom(java.io.InputStream input)
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseDelimitedFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parseFrom(
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1177,7 +1094,7 @@ public final class ClientConnect {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp prototype) {
+    public static Builder newBuilder(indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1193,26 +1110,26 @@ public final class ClientConnect {
       return builder;
     }
     /**
-     * Protobuf type {@code ConnectResp}
+     * Protobuf type {@code ConnectAuthResp}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:ConnectResp)
-        indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectRespOrBuilder {
+        // @@protoc_insertion_point(builder_implements:ConnectAuthResp)
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthRespOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectResp_descriptor;
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectAuthResp_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectResp_fieldAccessorTable
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectAuthResp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp.Builder.class);
+                indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp.Builder.class);
       }
 
-      // Construct using indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp.newBuilder()
+      // Construct using indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1240,17 +1157,17 @@ public final class ClientConnect {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectResp_descriptor;
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ConnectAuthResp_descriptor;
       }
 
       @java.lang.Override
-      public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp getDefaultInstanceForType() {
-        return indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp.getDefaultInstance();
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp getDefaultInstanceForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp.getDefaultInstance();
       }
 
       @java.lang.Override
-      public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp build() {
-        indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp result = buildPartial();
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp build() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1258,8 +1175,8 @@ public final class ClientConnect {
       }
 
       @java.lang.Override
-      public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp buildPartial() {
-        indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp result = new indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp(this);
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp buildPartial() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp result = new indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp(this);
         result.code_ = code_;
         result.message_ = message_;
         onBuilt();
@@ -1300,16 +1217,16 @@ public final class ClientConnect {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp) {
-          return mergeFrom((indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp)other);
+        if (other instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp) {
+          return mergeFrom((indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp other) {
-        if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp.getDefaultInstance()) return this;
+      public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp other) {
+        if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
         }
@@ -1332,11 +1249,11 @@ public final class ClientConnect {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp parsedMessage = null;
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp) e.getUnfinishedMessage();
+          parsedMessage = (indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1485,41 +1402,2560 @@ public final class ClientConnect {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:ConnectResp)
+      // @@protoc_insertion_point(builder_scope:ConnectAuthResp)
     }
 
-    // @@protoc_insertion_point(class_scope:ConnectResp)
-    private static final indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:ConnectAuthResp)
+    private static final indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp();
+      DEFAULT_INSTANCE = new indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp();
     }
 
-    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp getDefaultInstance() {
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ConnectResp>
-        PARSER = new com.google.protobuf.AbstractParser<ConnectResp>() {
+    private static final com.google.protobuf.Parser<ConnectAuthResp>
+        PARSER = new com.google.protobuf.AbstractParser<ConnectAuthResp>() {
       @java.lang.Override
-      public ConnectResp parsePartialFrom(
+      public ConnectAuthResp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ConnectResp(input, extensionRegistry);
+        return new ConnectAuthResp(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ConnectResp> parser() {
+    public static com.google.protobuf.Parser<ConnectAuthResp> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ConnectResp> getParserForType() {
+    public com.google.protobuf.Parser<ConnectAuthResp> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectResp getDefaultInstanceForType() {
+    public indi.dbfmp.ttsocket.protocol.ClientConnect.ConnectAuthResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetRsaPublicKeyReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetRsaPublicKeyReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *协议版本号
+     * </pre>
+     *
+     * <code>int32 version = 1;</code>
+     */
+    int getVersion();
+  }
+  /**
+   * <pre>
+   *获取服务器rsa公钥
+   * </pre>
+   *
+   * Protobuf type {@code GetRsaPublicKeyReq}
+   */
+  public  static final class GetRsaPublicKeyReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetRsaPublicKeyReq)
+      GetRsaPublicKeyReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetRsaPublicKeyReq.newBuilder() to construct.
+    private GetRsaPublicKeyReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetRsaPublicKeyReq() {
+      version_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetRsaPublicKeyReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              version_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq.class, indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq.Builder.class);
+    }
+
+    public static final int VERSION_FIELD_NUMBER = 1;
+    private int version_;
+    /**
+     * <pre>
+     *协议版本号
+     * </pre>
+     *
+     * <code>int32 version = 1;</code>
+     */
+    public int getVersion() {
+      return version_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (version_ != 0) {
+        output.writeInt32(1, version_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (version_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, version_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq)) {
+        return super.equals(obj);
+      }
+      indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq other = (indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq) obj;
+
+      boolean result = true;
+      result = result && (getVersion()
+          == other.getVersion());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getVersion();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *获取服务器rsa公钥
+     * </pre>
+     *
+     * Protobuf type {@code GetRsaPublicKeyReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetRsaPublicKeyReq)
+        indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq.class, indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq.Builder.class);
+      }
+
+      // Construct using indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        version_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyReq_descriptor;
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq getDefaultInstanceForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq build() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq buildPartial() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq result = new indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq(this);
+        result.version_ = version_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq) {
+          return mergeFrom((indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq other) {
+        if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq.getDefaultInstance()) return this;
+        if (other.getVersion() != 0) {
+          setVersion(other.getVersion());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int version_ ;
+      /**
+       * <pre>
+       *协议版本号
+       * </pre>
+       *
+       * <code>int32 version = 1;</code>
+       */
+      public int getVersion() {
+        return version_;
+      }
+      /**
+       * <pre>
+       *协议版本号
+       * </pre>
+       *
+       * <code>int32 version = 1;</code>
+       */
+      public Builder setVersion(int value) {
+        
+        version_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *协议版本号
+       * </pre>
+       *
+       * <code>int32 version = 1;</code>
+       */
+      public Builder clearVersion() {
+        
+        version_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetRsaPublicKeyReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetRsaPublicKeyReq)
+    private static final indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq();
+    }
+
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetRsaPublicKeyReq>
+        PARSER = new com.google.protobuf.AbstractParser<GetRsaPublicKeyReq>() {
+      @java.lang.Override
+      public GetRsaPublicKeyReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetRsaPublicKeyReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetRsaPublicKeyReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetRsaPublicKeyReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetRsaPublicKeyRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetRsaPublicKeyResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *结果
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     */
+    int getCode();
+
+    /**
+     * <pre>
+     *信息
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <pre>
+     *信息
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+
+    /**
+     * <pre>
+     *publicKey
+     * </pre>
+     *
+     * <code>string publicKey = 3;</code>
+     */
+    java.lang.String getPublicKey();
+    /**
+     * <pre>
+     *publicKey
+     * </pre>
+     *
+     * <code>string publicKey = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPublicKeyBytes();
+  }
+  /**
+   * Protobuf type {@code GetRsaPublicKeyResp}
+   */
+  public  static final class GetRsaPublicKeyResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetRsaPublicKeyResp)
+      GetRsaPublicKeyRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetRsaPublicKeyResp.newBuilder() to construct.
+    private GetRsaPublicKeyResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetRsaPublicKeyResp() {
+      code_ = 0;
+      message_ = "";
+      publicKey_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetRsaPublicKeyResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              code_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              message_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              publicKey_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp.class, indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp.Builder.class);
+    }
+
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
+    /**
+     * <pre>
+     *结果
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object message_;
+    /**
+     * <pre>
+     *信息
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     */
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *信息
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PUBLICKEY_FIELD_NUMBER = 3;
+    private volatile java.lang.Object publicKey_;
+    /**
+     * <pre>
+     *publicKey
+     * </pre>
+     *
+     * <code>string publicKey = 3;</code>
+     */
+    public java.lang.String getPublicKey() {
+      java.lang.Object ref = publicKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        publicKey_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *publicKey
+     * </pre>
+     *
+     * <code>string publicKey = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPublicKeyBytes() {
+      java.lang.Object ref = publicKey_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        publicKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      }
+      if (!getPublicKeyBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, publicKey_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (code_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, code_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      }
+      if (!getPublicKeyBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, publicKey_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp)) {
+        return super.equals(obj);
+      }
+      indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp other = (indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp) obj;
+
+      boolean result = true;
+      result = result && (getCode()
+          == other.getCode());
+      result = result && getMessage()
+          .equals(other.getMessage());
+      result = result && getPublicKey()
+          .equals(other.getPublicKey());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      hash = (37 * hash) + PUBLICKEY_FIELD_NUMBER;
+      hash = (53 * hash) + getPublicKey().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GetRsaPublicKeyResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetRsaPublicKeyResp)
+        indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp.class, indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp.Builder.class);
+      }
+
+      // Construct using indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        code_ = 0;
+
+        message_ = "";
+
+        publicKey_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_GetRsaPublicKeyResp_descriptor;
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp getDefaultInstanceForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp build() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp buildPartial() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp result = new indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp(this);
+        result.code_ = code_;
+        result.message_ = message_;
+        result.publicKey_ = publicKey_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp) {
+          return mergeFrom((indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp other) {
+        if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
+        }
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          onChanged();
+        }
+        if (!other.getPublicKey().isEmpty()) {
+          publicKey_ = other.publicKey_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int code_ ;
+      /**
+       * <pre>
+       *结果
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       */
+      public int getCode() {
+        return code_;
+      }
+      /**
+       * <pre>
+       *结果
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       */
+      public Builder setCode(int value) {
+        
+        code_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *结果
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       */
+      public Builder clearCode() {
+        
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public Builder clearMessage() {
+        
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        message_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object publicKey_ = "";
+      /**
+       * <pre>
+       *publicKey
+       * </pre>
+       *
+       * <code>string publicKey = 3;</code>
+       */
+      public java.lang.String getPublicKey() {
+        java.lang.Object ref = publicKey_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          publicKey_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *publicKey
+       * </pre>
+       *
+       * <code>string publicKey = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPublicKeyBytes() {
+        java.lang.Object ref = publicKey_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          publicKey_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *publicKey
+       * </pre>
+       *
+       * <code>string publicKey = 3;</code>
+       */
+      public Builder setPublicKey(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        publicKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *publicKey
+       * </pre>
+       *
+       * <code>string publicKey = 3;</code>
+       */
+      public Builder clearPublicKey() {
+        
+        publicKey_ = getDefaultInstance().getPublicKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *publicKey
+       * </pre>
+       *
+       * <code>string publicKey = 3;</code>
+       */
+      public Builder setPublicKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        publicKey_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetRsaPublicKeyResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetRsaPublicKeyResp)
+    private static final indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp();
+    }
+
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetRsaPublicKeyResp>
+        PARSER = new com.google.protobuf.AbstractParser<GetRsaPublicKeyResp>() {
+      @java.lang.Override
+      public GetRsaPublicKeyResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetRsaPublicKeyResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetRsaPublicKeyResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetRsaPublicKeyResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public indi.dbfmp.ttsocket.protocol.ClientConnect.GetRsaPublicKeyResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ChangeAesKeyReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ChangeAesKeyReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *aesKey
+     * </pre>
+     *
+     * <code>int32 aesKey = 1;</code>
+     */
+    int getAesKey();
+  }
+  /**
+   * <pre>
+   *交换aes密钥
+   * </pre>
+   *
+   * Protobuf type {@code ChangeAesKeyReq}
+   */
+  public  static final class ChangeAesKeyReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ChangeAesKeyReq)
+      ChangeAesKeyReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ChangeAesKeyReq.newBuilder() to construct.
+    private ChangeAesKeyReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ChangeAesKeyReq() {
+      aesKey_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ChangeAesKeyReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              aesKey_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq.Builder.class);
+    }
+
+    public static final int AESKEY_FIELD_NUMBER = 1;
+    private int aesKey_;
+    /**
+     * <pre>
+     *aesKey
+     * </pre>
+     *
+     * <code>int32 aesKey = 1;</code>
+     */
+    public int getAesKey() {
+      return aesKey_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (aesKey_ != 0) {
+        output.writeInt32(1, aesKey_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (aesKey_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, aesKey_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq)) {
+        return super.equals(obj);
+      }
+      indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq other = (indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq) obj;
+
+      boolean result = true;
+      result = result && (getAesKey()
+          == other.getAesKey());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + AESKEY_FIELD_NUMBER;
+      hash = (53 * hash) + getAesKey();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *交换aes密钥
+     * </pre>
+     *
+     * Protobuf type {@code ChangeAesKeyReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ChangeAesKeyReq)
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq.Builder.class);
+      }
+
+      // Construct using indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        aesKey_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyReq_descriptor;
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq getDefaultInstanceForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq build() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq buildPartial() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq result = new indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq(this);
+        result.aesKey_ = aesKey_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq) {
+          return mergeFrom((indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq other) {
+        if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq.getDefaultInstance()) return this;
+        if (other.getAesKey() != 0) {
+          setAesKey(other.getAesKey());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int aesKey_ ;
+      /**
+       * <pre>
+       *aesKey
+       * </pre>
+       *
+       * <code>int32 aesKey = 1;</code>
+       */
+      public int getAesKey() {
+        return aesKey_;
+      }
+      /**
+       * <pre>
+       *aesKey
+       * </pre>
+       *
+       * <code>int32 aesKey = 1;</code>
+       */
+      public Builder setAesKey(int value) {
+        
+        aesKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *aesKey
+       * </pre>
+       *
+       * <code>int32 aesKey = 1;</code>
+       */
+      public Builder clearAesKey() {
+        
+        aesKey_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ChangeAesKeyReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:ChangeAesKeyReq)
+    private static final indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq();
+    }
+
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ChangeAesKeyReq>
+        PARSER = new com.google.protobuf.AbstractParser<ChangeAesKeyReq>() {
+      @java.lang.Override
+      public ChangeAesKeyReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ChangeAesKeyReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ChangeAesKeyReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ChangeAesKeyReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ChangeAesKeyRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ChangeAesKeyResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *结果
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     */
+    int getCode();
+
+    /**
+     * <pre>
+     *信息
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <pre>
+     *信息
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+  }
+  /**
+   * Protobuf type {@code ChangeAesKeyResp}
+   */
+  public  static final class ChangeAesKeyResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ChangeAesKeyResp)
+      ChangeAesKeyRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ChangeAesKeyResp.newBuilder() to construct.
+    private ChangeAesKeyResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ChangeAesKeyResp() {
+      code_ = 0;
+      message_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ChangeAesKeyResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              code_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              message_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp.Builder.class);
+    }
+
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
+    /**
+     * <pre>
+     *结果
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object message_;
+    /**
+     * <pre>
+     *信息
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     */
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *信息
+     * </pre>
+     *
+     * <code>string message = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (code_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, code_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp)) {
+        return super.equals(obj);
+      }
+      indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp other = (indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp) obj;
+
+      boolean result = true;
+      result = result && (getCode()
+          == other.getCode());
+      result = result && getMessage()
+          .equals(other.getMessage());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ChangeAesKeyResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ChangeAesKeyResp)
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp.class, indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp.Builder.class);
+      }
+
+      // Construct using indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        code_ = 0;
+
+        message_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.internal_static_ChangeAesKeyResp_descriptor;
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp getDefaultInstanceForType() {
+        return indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp build() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp buildPartial() {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp result = new indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp(this);
+        result.code_ = code_;
+        result.message_ = message_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp) {
+          return mergeFrom((indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp other) {
+        if (other == indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
+        }
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int code_ ;
+      /**
+       * <pre>
+       *结果
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       */
+      public int getCode() {
+        return code_;
+      }
+      /**
+       * <pre>
+       *结果
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       */
+      public Builder setCode(int value) {
+        
+        code_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *结果
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       */
+      public Builder clearCode() {
+        
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public Builder clearMessage() {
+        
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *信息
+       * </pre>
+       *
+       * <code>string message = 2;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ChangeAesKeyResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:ChangeAesKeyResp)
+    private static final indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp();
+    }
+
+    public static indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ChangeAesKeyResp>
+        PARSER = new com.google.protobuf.AbstractParser<ChangeAesKeyResp>() {
+      @java.lang.Override
+      public ChangeAesKeyResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ChangeAesKeyResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ChangeAesKeyResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ChangeAesKeyResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public indi.dbfmp.ttsocket.protocol.ClientConnect.ChangeAesKeyResp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1531,10 +3967,30 @@ public final class ClientConnect {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ConnectAuthReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ConnectResp_descriptor;
+    internal_static_ConnectAuthResp_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ConnectResp_fieldAccessorTable;
+      internal_static_ConnectAuthResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetRsaPublicKeyReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetRsaPublicKeyReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetRsaPublicKeyResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetRsaPublicKeyResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ChangeAesKeyReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ChangeAesKeyReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ChangeAesKeyResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ChangeAesKeyResp_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1544,11 +4000,16 @@ public final class ClientConnect {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ClientConnect.proto\"@\n\016ConnectAuthReq\022" +
-      "\017\n\007version\030\001 \001(\005\022\020\n\010userName\030\002 \001(\t\022\013\n\003pw" +
-      "d\030\003 \001(\t\",\n\013ConnectResp\022\014\n\004code\030\001 \001(\005\022\017\n\007" +
-      "message\030\002 \001(\tB/\n\034indi.dbfmp.ttsocket.pro" +
-      "tocolB\rClientConnectP\000b\006proto3"
+      "\n\023ClientConnect.proto\"/\n\016ConnectAuthReq\022" +
+      "\020\n\010userName\030\001 \001(\t\022\013\n\003pwd\030\002 \001(\t\"0\n\017Connec" +
+      "tAuthResp\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t" +
+      "\"%\n\022GetRsaPublicKeyReq\022\017\n\007version\030\001 \001(\005\"" +
+      "G\n\023GetRsaPublicKeyResp\022\014\n\004code\030\001 \001(\005\022\017\n\007" +
+      "message\030\002 \001(\t\022\021\n\tpublicKey\030\003 \001(\t\"!\n\017Chan" +
+      "geAesKeyReq\022\016\n\006aesKey\030\001 \001(\005\"1\n\020ChangeAes" +
+      "KeyResp\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\tB/" +
+      "\n\034indi.dbfmp.ttsocket.protocolB\rClientCo" +
+      "nnectP\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1567,12 +4028,36 @@ public final class ClientConnect {
     internal_static_ConnectAuthReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ConnectAuthReq_descriptor,
-        new java.lang.String[] { "Version", "UserName", "Pwd", });
-    internal_static_ConnectResp_descriptor =
+        new java.lang.String[] { "UserName", "Pwd", });
+    internal_static_ConnectAuthResp_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_ConnectResp_fieldAccessorTable = new
+    internal_static_ConnectAuthResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ConnectResp_descriptor,
+        internal_static_ConnectAuthResp_descriptor,
+        new java.lang.String[] { "Code", "Message", });
+    internal_static_GetRsaPublicKeyReq_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_GetRsaPublicKeyReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetRsaPublicKeyReq_descriptor,
+        new java.lang.String[] { "Version", });
+    internal_static_GetRsaPublicKeyResp_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_GetRsaPublicKeyResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetRsaPublicKeyResp_descriptor,
+        new java.lang.String[] { "Code", "Message", "PublicKey", });
+    internal_static_ChangeAesKeyReq_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_ChangeAesKeyReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ChangeAesKeyReq_descriptor,
+        new java.lang.String[] { "AesKey", });
+    internal_static_ChangeAesKeyResp_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_ChangeAesKeyResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ChangeAesKeyResp_descriptor,
         new java.lang.String[] { "Code", "Message", });
   }
 

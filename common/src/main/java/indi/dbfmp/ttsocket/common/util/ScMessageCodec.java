@@ -1,4 +1,4 @@
-package indi.dbfmp.ttsocket.protocol.util;
+package indi.dbfmp.ttsocket.common.util;
 
 import com.google.protobuf.Message;
 import indi.dbfmp.ttsocket.protocol.ClientConnect;
@@ -56,7 +56,7 @@ public class ScMessageCodec {
         //todo 加密数据
         ByteBuf byteBuf = allocator.directBuffer(4 + 1+ dataBytes.length);
         //消息长度
-        byteBuf.writeInt(dataBytes.length);
+        byteBuf.writeInt(dataBytes.length + 1);
         //消息类型
         byteBuf.writeByte(mapping.getCommand());
         //消息
@@ -80,7 +80,7 @@ public class ScMessageCodec {
         //todo 加密数据
         ByteBuf byteBuf = allocator.directBuffer(4 + 1 + dataBytes.length);
         //消息长度
-        byteBuf.writeInt(dataBytes.length);
+        byteBuf.writeInt(dataBytes.length + 1);
         //消息类型
         byteBuf.writeByte(mapping.getCommand());
         //消息
@@ -157,7 +157,7 @@ public class ScMessageCodec {
         /**
          * 链接并认证
          */
-        CONNECT_AUTH(ConnectAuth,ClientConnect.ConnectAuthReq.class,ClientConnect.ConnectResp.class),
+        CONNECT_AUTH(ConnectAuth,ClientConnect.ConnectAuthReq.class,ClientConnect.ConnectAuthResp.class),
         ;
 
         private byte command;
