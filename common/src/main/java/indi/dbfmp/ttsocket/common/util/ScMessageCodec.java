@@ -1,5 +1,6 @@
 package indi.dbfmp.ttsocket.common.util;
 
+import cn.hutool.crypto.symmetric.AES;
 import com.google.protobuf.Message;
 import indi.dbfmp.ttsocket.protocol.ClientConnect;
 import indi.dbfmp.ttsocket.protocol.ScMessage;
@@ -47,20 +48,21 @@ public class ScMessageCodec {
      * @return byte数据
      * @throws SerializationException 序列化异常
      */
-    public static ByteBuf serializeResp(ByteBufAllocator allocator, Message msg) throws SerializationException{
+    public static ByteBuf serializeResp(ByteBufAllocator allocator, Message msg, AES aes) throws SerializationException{
         ScMsgMapping mapping = scMsgMappingRespMap.get(msg.getClass().getSimpleName());
         if (null == mapping) {
             throw new SerializationException("无法获取command消息类型,className:" + msg.getClass().getSimpleName());
         }
         byte[] dataBytes = msg.toByteArray();
-        //todo 加密数据
-        ByteBuf byteBuf = allocator.directBuffer(4 + 1+ dataBytes.length);
+        byte[] encryptData = aes.encrypt(dataBytes);
+        //加密数据
+        ByteBuf byteBuf = allocator.directBuffer(4 + 1 + encryptData.length);
         //消息长度
-        byteBuf.writeInt(dataBytes.length + 1);
+        byteBuf.writeInt(encryptData.length + 1);
         //消息类型
         byteBuf.writeByte(mapping.getCommand());
         //消息
-        byteBuf.writeBytes(dataBytes);
+        byteBuf.writeBytes(encryptData);
         return byteBuf;
     }
 
@@ -71,20 +73,21 @@ public class ScMessageCodec {
      * @return byte数据
      * @throws SerializationException 序列化异常
      */
-    public static ByteBuf serializeReq(ByteBufAllocator allocator, Message msg) throws SerializationException{
+    public static ByteBuf serializeReq(ByteBufAllocator allocator, Message msg, AES aes) throws SerializationException{
         ScMsgMapping mapping = scMsgMappingReqMap.get(msg.getClass().getSimpleName());
         if (null == mapping) {
             throw new SerializationException("无法获取command消息类型,className:" + msg.getClass().getSimpleName());
         }
         byte[] dataBytes = msg.toByteArray();
-        //todo 加密数据
-        ByteBuf byteBuf = allocator.directBuffer(4 + 1 + dataBytes.length);
-        //消息长度
-        byteBuf.writeInt(dataBytes.length + 1);
+        byte[] encryptData = aes.encrypt(dataBytes);
+        //加密数据
+        ByteBuf byteBuf = allocator.directBuffer(4 + 1 + encryptData.length);
+        //消息长度,+1是消息类型长度为1
+        byteBuf.writeInt(encryptData.length + 1);
         //消息类型
         byteBuf.writeByte(mapping.getCommand());
         //消息
-        byteBuf.writeBytes(dataBytes);
+        byteBuf.writeBytes(encryptData);
         return byteBuf;
     }
 
@@ -98,7 +101,7 @@ public class ScMessageCodec {
      * @throws SerializationException
      */
     @SuppressWarnings("all")
-    public static <T> T deserializeReq(ScMessage msg) throws SerializationException{
+    public static <T> T deserializeReq(ScMessage msg, AES aes) throws SerializationException{
         ScMsgMapping mapping = scMsgMappingMap.get(msg.getCommand());
         if (null == mapping) {
             throw new SerializationException("无法获取command消息类型,command:" + msg.getCommand());
@@ -106,8 +109,9 @@ public class ScMessageCodec {
         Class<? extends Message> reqMsgClass = mapping.getReqMsgClass();
         byte[] data = new byte[msg.getData().readableBytes()];
         msg.getData().readBytes(data);
+        byte[] decryptData = aes.decrypt(data);
         try {
-            return (T)MethodUtils.invokeStaticMethod(reqMsgClass, "parseFrom", data);
+            return (T)MethodUtils.invokeStaticMethod(reqMsgClass, "parseFrom", decryptData);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new SerializationException("反射消息对象失败",e);
         }
@@ -121,7 +125,7 @@ public class ScMessageCodec {
      * @throws SerializationException
      */
     @SuppressWarnings("all")
-    public static <T> T deserializeResp(ScMessage msg) throws SerializationException{
+    public static <T> T deserializeResp(ScMessage msg, AES aes) throws SerializationException{
         ScMsgMapping mapping = scMsgMappingMap.get(msg.getCommand());
         if (null == mapping) {
             throw new SerializationException("无法获取command消息类型,command:" + msg.getCommand());
@@ -129,8 +133,9 @@ public class ScMessageCodec {
         Class<? extends Message> reqMsgClass = mapping.getRespMsgClass();
         byte[] data = new byte[msg.getData().readableBytes()];
         msg.getData().readBytes(data);
+        byte[] decryptData = aes.decrypt(data);
         try {
-            return (T)MethodUtils.invokeStaticMethod(reqMsgClass, "parseFrom", data);
+            return (T)MethodUtils.invokeStaticMethod(reqMsgClass, "parseFrom", decryptData);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new SerializationException("反射消息对象失败",e);
         }
