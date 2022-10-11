@@ -37,7 +37,9 @@ message GetRsaPublicKeyResp {
 //交换aes密钥
 message ChangeAesKeyReq{
   //aesKey
-  int32 aesKey = 1;
+  bytes aesKey = 1;
+  //aes盐
+  bytes aesIv = 2;
 }
 
 message ChangeAesKeyResp {
