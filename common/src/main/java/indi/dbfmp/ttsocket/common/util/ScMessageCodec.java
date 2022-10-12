@@ -20,7 +20,9 @@ import java.util.Map;
  */
 public class ScMessageCodec {
 
-    public static final byte ConnectAuth = 0;
+    public static final byte GET_SERVER_PUBLIC_KEY = 0;
+    public static final byte CHANGE_AES_KEY = 1;
+    public static final byte CONNECT_AUTH = 2;
 
     //command映射
     private static final Map<Byte,ScMsgMapping> scMsgMappingMap = new HashMap<>();
@@ -159,10 +161,19 @@ public class ScMessageCodec {
     @AllArgsConstructor
     public enum ScMsgMapping{
 
+
+        /**
+         * 获取服务器rsa公钥
+         */
+        GET_SERVER_PUBLIC_KEY(ScMessageCodec.GET_SERVER_PUBLIC_KEY,ClientConnect.GetRsaPublicKeyReq.class,ClientConnect.GetRsaPublicKeyResp.class),
+        /**
+         * 交换aes密钥
+         */
+        CHANGE_AES_KEY(ScMessageCodec.CHANGE_AES_KEY,ClientConnect.ChangeAesKeyReq.class,ClientConnect.ChangeAesKeyResp.class),
         /**
          * 链接并认证
          */
-        CONNECT_AUTH(ConnectAuth,ClientConnect.ConnectAuthReq.class,ClientConnect.ConnectAuthResp.class),
+        CONNECT_AUTH(ScMessageCodec.CONNECT_AUTH,ClientConnect.ConnectAuthReq.class,ClientConnect.ConnectAuthResp.class),
         ;
 
         private byte command;
